@@ -1,5 +1,5 @@
 import React from "react";
-import ReactAudioPlayer from "react-audio-player";
+import { PlayButton, PlayIcon } from "../styles/SoundButton.styles";
 
 export default class SoundButton extends React.Component {
   constructor(props) {
@@ -11,21 +11,18 @@ export default class SoundButton extends React.Component {
   }
 
   getSoundSrc(wordObj) {
-    const [{ audio }] = wordObj.phonetics.filter(
+    const [audioObj] = wordObj.phonetics.filter(
       (phonetic) => phonetic.audio !== ""
     );
+
+    const audio = audioObj?.audio;
     this.setState((state) => {
       state.audioSrc = audio;
     });
-    console.log(!this.state.audioSrc);
-
-    // console.log(audioObj.sound);
-    console.log(this.audioRef.current);
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.newWord !== this.props.newWord) {
       this.getSoundSrc(this.props.newWord);
-      console.log(this.state.audioSrc);
     }
   }
   render() {
@@ -38,14 +35,14 @@ export default class SoundButton extends React.Component {
               type="audio/mp3"
               ref={this.audioRef}
             />
-            <button
+            <PlayButton
               onClick={() => {
                 this.audioRef.current.play();
               }}
               disabled={!this.state.audioSrc}
             >
-              Play
-            </button>
+              <PlayIcon />
+            </PlayButton>
           </>
         )}
       </div>
