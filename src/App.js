@@ -6,16 +6,12 @@ import {
   Emoji,
   MainContainer,
   WordNotFoundHeader,
-  WordHeader,
-  HeaderContainer,
   WordNotFoundContainer,
-  WordTranscr,
-  SynonymsListContainer,
-  PartOfSpeechHeader,
-  DefinitionListItems,
 } from "./styles/App.styles";
-import SoundButton from "./components/SoundButton";
 import SynAndAnt from "./components/SynAndAnt";
+import Meanings from "./components/Meanings";
+import Source from "./components/Source";
+import WordHeader from "./components/WordHeader";
 
 class App extends React.Component {
   constructor(props) {
@@ -69,54 +65,11 @@ class App extends React.Component {
                   <Emoji>😞</Emoji>
                 </WordNotFoundContainer>
               )}
-              {this.state.detailsWord.word && (
-                <HeaderContainer>
-                  <WordHeader>{this.state.detailsWord.word}</WordHeader>
-                  <SoundButton newWord={this.state.detailsWord} />
-                  {this.state.detailsWord.phonetics && (
-                    <WordTranscr>
-                      {this.state.detailsWord.phonetics[0].text}
-                    </WordTranscr>
-                  )}
-                </HeaderContainer>
-              )}
+              <WordHeader detailsWord={this.state.detailsWord} />
               <div>
-                {this.state.detailsWord.meanings &&
-                  this.state.detailsWord.meanings.map(
-                    ({ partOfSpeech, definitions }, index) => (
-                      <div key={index}>
-                        <div style={{ position: "relative" }}>
-                          <PartOfSpeechHeader>
-                            {partOfSpeech}
-                          </PartOfSpeechHeader>
-                        </div>
-                        {<h3 style={{ color: "gray" }}>Meaning</h3>}
-                        <ul style={{ listStyle: "none" }}>
-                          {definitions.map((element, index) => {
-                            return element.definition ? (
-                              <DefinitionListItems key={index}>
-                                {element.definition}
-                              </DefinitionListItems>
-                            ) : null;
-                          })}
-                        </ul>
-                      </div>
-                    )
-                  )}
+                <Meanings detailsWord={this.state.detailsWord} />
                 <SynAndAnt detailsWord={this.state.detailsWord} />
-                <h3 style={{ display: "inline", color: "gray" }}>Source: </h3>
-                <a
-                  style={{
-                    dipaly: "inline",
-                    color: "inherit",
-                  }}
-                  target="_blank"
-                  href={`https://api.dictionaryapi.dev/api/v2/entries/en/
-                ${this.state.inputWord}`}
-                >
-                  https://api.dictionaryapi.dev/api/v2/entries/en/
-                  {this.state.inputWord}
-                </a>
+                <Source inputWord={this.state.inputWord} />
               </div>
             </div>
           )}
