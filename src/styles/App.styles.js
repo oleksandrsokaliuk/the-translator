@@ -31,16 +31,10 @@ export const HeaderContainer = styled.div`
   flex-direction: column;
   line-height: 1px;
   position: relative;
-  margin: 0 5%;
 `;
 export const WordTranscr = styled.h2`
   font-size: 2em;
   color: rgb(164, 66, 238, 0.5);
-`;
-
-export const SynonymsListContainer = styled.div`
-  display: inline;
-  color: rgb(164, 66, 238);
 `;
 
 export const PartOfSpeechHeader = styled.h2`

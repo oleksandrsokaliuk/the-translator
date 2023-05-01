@@ -20,6 +20,9 @@ export default class SoundButton extends React.Component {
       state.audioSrc = audio;
     });
   }
+  componentDidMount() {
+    this.props.newWord && this.getSoundSrc(this.props.newWord);
+  }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.newWord !== this.props.newWord) {
       this.getSoundSrc(this.props.newWord);
@@ -28,7 +31,7 @@ export default class SoundButton extends React.Component {
   render() {
     return (
       <div>
-        {this.props.newWord && this.audioRef && (
+        {this.props.newWord && this.audioRef && this.state.audioSrc && (
           <>
             <audio
               src={this.state.audioSrc}

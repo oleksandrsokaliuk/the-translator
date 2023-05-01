@@ -13,6 +13,9 @@ export const PlayButton = styled.button`
     props.disabled ? "white" : "rgb(164, 66, 238, 0.2)"};
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   /* @media (max-width: 768px) {
     right: 10%;
@@ -20,5 +23,5 @@ export const PlayButton = styled.button`
 `;
 
 export const PlayIcon = styled(FaPlay)`
-  font-size: 1.1em;
+  font-size: 1.3em;
 `;

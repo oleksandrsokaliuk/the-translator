@@ -8,7 +8,6 @@ import {
   WordNotFoundHeader,
   WordHeader,
   HeaderContainer,
-  WordTranscrContainer,
   WordNotFoundContainer,
   WordTranscr,
   SynonymsListContainer,
@@ -16,6 +15,7 @@ import {
   DefinitionListItems,
 } from "./styles/App.styles";
 import SoundButton from "./components/SoundButton";
+import SynAndAnt from "./components/SynAndAnt";
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +34,6 @@ class App extends React.Component {
             `https://api.dictionaryapi.dev/api/v2/entries/en/${this.state.inputWord}`
           )
           .then((result) => {
-            console.log(result.data[0]);
             this.setState({
               detailsWord: result.data[0],
             });
@@ -93,9 +92,9 @@ class App extends React.Component {
                         </div>
                         {<h3 style={{ color: "gray" }}>Meaning</h3>}
                         <ul style={{ listStyle: "none" }}>
-                          {definitions.map((element) => {
+                          {definitions.map((element, index) => {
                             return element.definition ? (
-                              <DefinitionListItems>
+                              <DefinitionListItems key={index}>
                                 {element.definition}
                               </DefinitionListItems>
                             ) : null;
@@ -104,21 +103,13 @@ class App extends React.Component {
                       </div>
                     )
                   )}
-              </div>
-              {this.state.detailsWord?.meanings[0].synonyms && (
-                <h3 style={{ display: "inline", color: "gray" }}>Synonyms: </h3>
-              )}
-              <SynonymsListContainer>
-                {this.state.detailsWord.meanings &&
-                  this.state.detailsWord.meanings[0].synonyms.map((synonym) => {
-                    return synonym ? <span>{synonym}, </span> : null;
-                  })}
-              </SynonymsListContainer>
-              <div>
-                <hr />
+                <SynAndAnt detailsWord={this.state.detailsWord} />
                 <h3 style={{ display: "inline", color: "gray" }}>Source: </h3>
                 <a
-                  style={{ dipaly: "inline" }}
+                  style={{
+                    dipaly: "inline",
+                    color: "inherit",
+                  }}
                   target="_blank"
                   href={`https://api.dictionaryapi.dev/api/v2/entries/en/
                 ${this.state.inputWord}`}
