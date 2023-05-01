@@ -18,9 +18,7 @@ export const SearchBarInput = styled.input`
   font-size: 2rem;
   border: none;
   padding-left: 5%;
-  &:hover {
-    outline: none;
-  }
+  outline: none;
 `;
 export const SearchBarIcon = styled(FaSearch)`
   width: 30px;

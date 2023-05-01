@@ -10,6 +10,10 @@ import {
   HeaderContainer,
   WordTranscrContainer,
   WordNotFoundContainer,
+  WordTranscr,
+  SynonymsListContainer,
+  PartOfSpeechHeader,
+  DefinitionListItems,
 } from "./styles/App.styles";
 import SoundButton from "./components/SoundButton";
 
@@ -17,9 +21,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      detailsWord: {},
+      detailsWord: "",
       inputWord: "",
-      audioSrc: "",
     };
   }
 
@@ -35,13 +38,6 @@ class App extends React.Component {
             this.setState({
               detailsWord: result.data[0],
             });
-            let audioSrc =
-              "https://api.dictionaryapi.dev/media/pronunciations/en/word-us.mp3";
-            // this.state.detailsWord.phonetics.find(
-            //   (phonetic) => phonetic.audio.length > 0
-            // ).audio;
-            this.onTrackChange(audioSrc);
-            this.setState({ audioSrc });
           });
       } catch (e) {
         console.error(e);
@@ -55,16 +51,17 @@ class App extends React.Component {
       }, 1000);
     }
   };
-  onTrackChange(source) {
-    this.setState({ audioSrc: source }, () => {});
-  }
   render() {
     return (
       <div>
         <GlobalStyle />
         <MainContainer>
           <SearchBar onInputChange={this.changeWord} />
-          <SoundButton newWord={this.state.detailsWord} />
+          {!this.state.detailsWord && (
+            <div>
+              <h2>Type your word</h2>
+            </div>
+          )}
           {this.state.detailsWord && (
             <div>
               {!this.state.detailsWord.word && (
@@ -73,27 +70,34 @@ class App extends React.Component {
                   <Emoji>😞</Emoji>
                 </WordNotFoundContainer>
               )}
-              <HeaderContainer>
-                <WordTranscrContainer>
-                  {!this.state.detailsWord.word && (
-                    <WordHeader>{this.state.detailsWord.word}</WordHeader>
-                  )}
+              {this.state.detailsWord.word && (
+                <HeaderContainer>
+                  <WordHeader>{this.state.detailsWord.word}</WordHeader>
+                  <SoundButton newWord={this.state.detailsWord} />
                   {this.state.detailsWord.phonetics && (
-                    <h2>{this.state.detailsWord.phonetics[0].text}</h2>
+                    <WordTranscr>
+                      {this.state.detailsWord.phonetics[0].text}
+                    </WordTranscr>
                   )}
-                </WordTranscrContainer>
-              </HeaderContainer>
-              {this.state.detailsWord.word && <h3>MEANINGS</h3>}
+                </HeaderContainer>
+              )}
               <div>
                 {this.state.detailsWord.meanings &&
                   this.state.detailsWord.meanings.map(
                     ({ partOfSpeech, definitions }, index) => (
                       <div key={index}>
-                        <h4> {partOfSpeech}</h4>
-                        <ul>
+                        <div style={{ position: "relative" }}>
+                          <PartOfSpeechHeader>
+                            {partOfSpeech}
+                          </PartOfSpeechHeader>
+                        </div>
+                        {<h3 style={{ color: "gray" }}>Meaning</h3>}
+                        <ul style={{ listStyle: "none" }}>
                           {definitions.map((element) => {
                             return element.definition ? (
-                              <li>{element.definition}</li>
+                              <DefinitionListItems>
+                                {element.definition}
+                              </DefinitionListItems>
                             ) : null;
                           })}
                         </ul>
@@ -101,13 +105,28 @@ class App extends React.Component {
                     )
                   )}
               </div>
-              {this.state.detailsWord.word && <h3>SYNONYMS</h3>}
-              <>
+              {this.state.detailsWord?.meanings[0].synonyms && (
+                <h3 style={{ display: "inline", color: "gray" }}>Synonyms: </h3>
+              )}
+              <SynonymsListContainer>
                 {this.state.detailsWord.meanings &&
                   this.state.detailsWord.meanings[0].synonyms.map((synonym) => {
                     return synonym ? <span>{synonym}, </span> : null;
                   })}
-              </>
+              </SynonymsListContainer>
+              <div>
+                <hr />
+                <h3 style={{ display: "inline", color: "gray" }}>Source: </h3>
+                <a
+                  style={{ dipaly: "inline" }}
+                  target="_blank"
+                  href={`https://api.dictionaryapi.dev/api/v2/entries/en/
+                ${this.state.inputWord}`}
+                >
+                  https://api.dictionaryapi.dev/api/v2/entries/en/
+                  {this.state.inputWord}
+                </a>
+              </div>
             </div>
           )}
         </MainContainer>
