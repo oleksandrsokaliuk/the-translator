@@ -3,10 +3,10 @@ import { FaPlay } from "react-icons/fa";
 
 export const PlayButton = styled.button`
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 90px;
+  height: 90px;
   position: absolute;
-  top: 20%;
+  top: 15%;
   right: 0;
   color: ${(props) => (props.disabled ? "gray" : "#a442ee")};
   background-color: ${(props) =>
@@ -23,5 +23,5 @@ export const PlayButton = styled.button`
 `;
 
 export const PlayIcon = styled(FaPlay)`
-  font-size: 1.3em;
+  font-size: 1.7em;
 `;
