@@ -4,6 +4,7 @@ import {
   WordNotFoundContainer,
   WordNotFoundHeader,
 } from "../styles/App.styles";
+import Joke from "./Joke";
 
 export default class WordNotFound extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export default class WordNotFound extends React.Component {
       <WordNotFoundContainer>
         <WordNotFoundHeader>The word is not found</WordNotFoundHeader>
         <Emoji>😞</Emoji>
+        <Joke />
       </WordNotFoundContainer>
     );
   }
