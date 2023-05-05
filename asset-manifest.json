@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/translator/static/js/main.826cc918.js",
-    "index.html": "/translator/index.html",
-    "main.826cc918.js.map": "/translator/static/js/main.826cc918.js.map"
+    "main.js": "/the-translator/static/js/main.cf63688f.js",
+    "index.html": "/the-translator/index.html",
+    "main.cf63688f.js.map": "/the-translator/static/js/main.cf63688f.js.map"
   },
   "entrypoints": [
-    "static/js/main.826cc918.js"
+    "static/js/main.cf63688f.js"
   ]
 }
