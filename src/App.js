@@ -14,6 +14,7 @@ import Source from "./components/Source";
 import WordHeader from "./components/WordHeader";
 import OriginalView from "./components/OriginalView";
 import WordNotFound from "./components/WordNotFound";
+import AdditionalWord from "./components/AdditionalWord";
 
 class App extends React.Component {
   constructor(props) {
@@ -43,25 +44,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.inputWord !== prevState.inputWord) {
-      // try {
-      // axios
-      //   .get(
-      //     `https://api.dictionaryapi.dev/api/v2/entries/en/${this.state.inputWord}`
-      //   )
-      //   .then((result) => {
-      //     this.setState({
-      //       detailsWord: result.data[0],
-      //       isInputTouched: true,
-      //     });
-      //   });
       this.fetchData();
-      // } catch (e) {
-      // this.setState({
-      //   detailsWord: "",
-      //   isInputTouched: true,
-      // });
-      //   console.error(e);
-      // }
     }
   }
   changeWord = (event) => {
@@ -89,7 +72,11 @@ class App extends React.Component {
             <div>
               <WordHeader detailsWord={this.state.detailsWord} />
               <Meanings detailsWord={this.state.detailsWord} />
-              <SynAndAnt detailsWord={this.state.detailsWord} />
+              <SynAndAnt
+                detailsWord={this.state.detailsWord}
+                fetchDataAdd={this.fetchDataAdd}
+                additionalWord={this.additionalWord}
+              />
               <Source inputWord={this.state.inputWord} />
             </div>
           )}
