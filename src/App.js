@@ -23,23 +23,33 @@ class App extends React.Component {
       detailsWord: "",
       inputWord: "",
       isInputTouched: false,
+      isWordFound: true,
     };
   }
 
   async fetchData() {
-    const word = await axios.get(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${this.state.inputWord}`
-    );
-    console.log(word);
-    word
-      ? this.setState({
-          detailsWord: word.data[0],
-          isInputTouched: true,
-        })
-      : this.setState({
-          detailsWord: "",
-          isInputTouched: true,
-        });
+    try {
+      const word = await axios.get(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${this.state.inputWord}`
+      );
+      this.setState({ isWordFound: true });
+      console.log(word.status);
+      word
+        ? this.setState({
+            detailsWord: word.data[0],
+            isInputTouched: true,
+          })
+        : this.setState({
+            detailsWord: "",
+            isInputTouched: true,
+          });
+    } catch (error) {
+      if (error.response.status === 404) {
+        this.setState({ isWordFound: false });
+        return;
+      }
+      console.error(error);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -60,15 +70,19 @@ class App extends React.Component {
         <GlobalStyle />
         <MainContainer>
           <SearchBar onInputChange={this.changeWord} />
-          <OriginalView
-            detailsWord={this.state.detailsWord}
-            isInputTouched={this.state.isInputTouched}
-          />
-          <WordNotFound
-            detailsWord={this.state.detailsWord}
-            isInputTouched={this.state.isInputTouched}
-          />
-          {this.state.detailsWord && (
+          {this.state.isWordFound && (
+            <OriginalView
+              detailsWord={this.state.detailsWord}
+              isInputTouched={this.state.isInputTouched}
+            />
+          )}
+          {!this.state.isWordFound && (
+            <WordNotFound
+              detailsWord={this.state.detailsWord}
+              isInputTouched={this.state.isInputTouched}
+            />
+          )}
+          {this.state.detailsWord && this.state.isWordFound && (
             <div>
               <WordHeader detailsWord={this.state.detailsWord} />
               <Meanings detailsWord={this.state.detailsWord} />

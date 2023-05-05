@@ -8,13 +8,10 @@ import {
 export default class WordNotFound extends React.Component {
   render() {
     return (
-      !this.props.detailsWord &&
-      this.props.isInputTouched && (
-        <WordNotFoundContainer>
-          <WordNotFoundHeader>The word is not found</WordNotFoundHeader>
-          <Emoji>😞</Emoji>
-        </WordNotFoundContainer>
-      )
+      <WordNotFoundContainer>
+        <WordNotFoundHeader>The word is not found</WordNotFoundHeader>
+        <Emoji>😞</Emoji>
+      </WordNotFoundContainer>
     );
   }
 }
