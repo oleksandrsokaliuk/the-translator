@@ -12,6 +12,13 @@ export const DefinitionListItems = styled.li`
   }
 `;
 
+export const DefinitionExamples = styled.p`
+  font-style: italic;
+  margin-left: 5px;
+  color: gray;
+  font-size: 0.9rem;
+`;
+
 export const PartOfSpeechHeader = styled.h2`
   position: relative;
   overflow: hidden;

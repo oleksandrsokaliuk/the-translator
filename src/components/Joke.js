@@ -30,8 +30,13 @@ export default class Joke extends React.Component {
   }
   render() {
     return (
-      <JokeContainer onClick={this.showJoke}>
-        <ShowJokeButton>Read a joke to relax</ShowJokeButton>
+      <JokeContainer
+        isJokeShown={this.state.isJokeShown}
+        onClick={this.showJoke}
+      >
+        {!this.state.isJokeShown && (
+          <ShowJokeButton>Read a joke</ShowJokeButton>
+        )}
         {this.state.joke && this.state.isJokeShown && (
           <JokeText>{this.state.joke}</JokeText>
         )}

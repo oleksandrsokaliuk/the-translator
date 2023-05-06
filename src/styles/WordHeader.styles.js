@@ -14,4 +14,5 @@ export const Word = styled.h1`
 export const WordTranscr = styled.h2`
   font-size: 2em;
   color: rgb(164, 66, 238, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
 `;

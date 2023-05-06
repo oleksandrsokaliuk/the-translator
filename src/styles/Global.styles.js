@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Serif', serif;
+    background-color: rgb(164, 66, 238, 0.3);
   }
 `;
 

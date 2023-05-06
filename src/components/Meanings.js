@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  DefinitionExamples,
   DefinitionListItems,
   MeaningHeader,
   MeaningUL,
@@ -20,9 +21,16 @@ export default class Meanings extends React.Component {
                 <MeaningUL>
                   {definitions.map((element, index) => {
                     return element.definition ? (
-                      <DefinitionListItems key={index}>
-                        {element.definition}
-                      </DefinitionListItems>
+                      <>
+                        <DefinitionListItems key={index}>
+                          {element.definition}
+                        </DefinitionListItems>
+                        {element.example && (
+                          <DefinitionExamples>
+                            {element.example}
+                          </DefinitionExamples>
+                        )}
+                      </>
                     ) : null;
                   })}
                 </MeaningUL>

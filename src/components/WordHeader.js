@@ -15,7 +15,7 @@ export default class WordHeader extends React.Component {
           <SoundButton newWord={this.props.detailsWord} />
           {this.props.detailsWord.phonetics && (
             <WordTranscr>
-              {this.props.detailsWord.phonetics[0].text}
+              {this.props.detailsWord.phonetics[0]?.text}
             </WordTranscr>
           )}
         </HeaderContainer>

@@ -6,6 +6,7 @@ export const SearchBarContainer = styled.div`
   background: #f4f4f4;
   width: 100%;
   min-width: 200px;
+  min-height: 8vh;
   height: 8vh;
   border-radius: 20px;
   overflow: hidden;
