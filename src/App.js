@@ -80,6 +80,7 @@ class App extends React.Component {
             <WordNotFound
               detailsWord={this.state.detailsWord}
               isInputTouched={this.state.isInputTouched}
+              text="The word is not found"
             />
           )}
           {this.state.detailsWord && this.state.isWordFound && (
@@ -88,7 +89,6 @@ class App extends React.Component {
               <Meanings detailsWord={this.state.detailsWord} />
               <SynAndAnt
                 detailsWord={this.state.detailsWord}
-                fetchDataAdd={this.fetchDataAdd}
                 additionalWord={this.additionalWord}
               />
               <Source inputWord={this.state.inputWord} />

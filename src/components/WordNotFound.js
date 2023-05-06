@@ -38,7 +38,7 @@ export default class WordNotFound extends React.Component {
   render() {
     return (
       <WordNotFoundContainer>
-        <WordNotFoundHeader>The word is not found</WordNotFoundHeader>
+        <WordNotFoundHeader>{this.props.text}</WordNotFoundHeader>
         {this.state.meme && this.state.meme === "Joke" ? (
           <Joke />
         ) : (
