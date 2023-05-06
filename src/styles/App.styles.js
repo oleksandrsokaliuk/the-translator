@@ -9,7 +9,12 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const WordNotFoundContainer = styled.div``;
+export const WordNotFoundContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const WordNotFoundHeader = styled.h1`
   font-size: 2.5rem;
