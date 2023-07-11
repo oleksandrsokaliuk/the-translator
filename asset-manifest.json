@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/the-translator/static/js/main.813082c1.js",
+    "main.js": "/the-translator/static/js/main.cc2a5e58.js",
     "static/media/meme_monkey.jpg": "/the-translator/static/media/meme_monkey.c4102acefcdd6bcf90e3.jpg",
     "static/media/meme_one_simply.jpg": "/the-translator/static/media/meme_one_simply.533635f26e4effb519bf.jpg",
     "static/media/meme_what_is_happening.jpg": "/the-translator/static/media/meme_what_is_happening.20fb02cee4ceffa0b303.jpg",
     "index.html": "/the-translator/index.html",
-    "main.813082c1.js.map": "/the-translator/static/js/main.813082c1.js.map"
+    "main.cc2a5e58.js.map": "/the-translator/static/js/main.cc2a5e58.js.map"
   },
   "entrypoints": [
-    "static/js/main.813082c1.js"
+    "static/js/main.cc2a5e58.js"
   ]
 }
