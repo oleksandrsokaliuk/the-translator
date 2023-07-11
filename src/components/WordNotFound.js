@@ -1,14 +1,14 @@
 import React from "react";
-import {
-  Emoji,
-  WordNotFoundContainer,
-  WordNotFoundHeader,
-} from "../styles/App.styles";
 import Joke from "./Joke";
 import MonkeyMeme from "./../assets/meme_monkey.jpg";
 import WhatIsHappeningMeme from "./../assets/meme_what_is_happening.jpg";
 import OneSimplyMeme from "./../assets/meme_one_simply.jpg";
-import { MemeImg } from "../styles/WordNotFound.styles";
+import {
+  MemeImg,
+  WordNotFoundContainer,
+  WordNotFoundHeader,
+} from "../styles/WordNotFound.styles";
+import { AnimatePresence } from "framer-motion";
 
 export default class WordNotFound extends React.Component {
   constructor() {
@@ -38,12 +38,25 @@ export default class WordNotFound extends React.Component {
   render() {
     return (
       <WordNotFoundContainer>
-        <WordNotFoundHeader>{this.props.text}</WordNotFoundHeader>
-        {this.state.meme && this.state.meme === "Joke" ? (
-          <Joke />
-        ) : (
-          <MemeImg src={this.state.meme} />
-        )}
+        <WordNotFoundHeader
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          {this.props.text}
+        </WordNotFoundHeader>
+        <AnimatePresence>
+          {this.state.meme && this.state.meme === "Joke" ? (
+            <Joke />
+          ) : (
+            <MemeImg
+              src={this.state.meme}
+              initial={{ opacity: 0, transform: "scale(0)" }}
+              animate={{ opacity: 1, transform: "scale(1)" }}
+              transition={{ duration: 1 }}
+            />
+          )}
+        </AnimatePresence>
       </WordNotFoundContainer>
     );
   }

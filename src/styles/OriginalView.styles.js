@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const OriginalViewContainer = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const OriginalViewContainer = styled.div`
   margin-top: 5%;
 `;
 
-export const OriginalViewHeader = styled.h2`
+export const OriginalViewHeader = styled(motion.h2)`
   font-size: 2.5em;
   color: black;
 `;
@@ -18,7 +19,7 @@ export const TitleSpan = styled.span`
   font-size: inherit;
 `;
 
-export const OriginalViewDescription = styled.p`
+export const OriginalViewDescription = styled(motion.p)`
   font-size: 1.2em;
   color: gray;
   line-height: 1px;

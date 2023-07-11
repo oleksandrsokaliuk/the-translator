@@ -1,6 +1,13 @@
 import React from "react";
 import axios from "axios";
-import { JokeContainer, JokeText, ShowJokeButton } from "../styles/Joke.styles";
+import {
+  JokeButtonContainer,
+  JokeContainer,
+  JokeText,
+  JokeTextContainer,
+  ShowJokeButton,
+} from "../styles/Joke.styles";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default class Joke extends React.Component {
   constructor() {
@@ -33,13 +40,33 @@ export default class Joke extends React.Component {
       <JokeContainer
         isJokeShown={this.state.isJokeShown}
         onClick={this.showJoke}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
       >
-        {!this.state.isJokeShown && (
-          <ShowJokeButton>Read a joke</ShowJokeButton>
-        )}
-        {this.state.joke && this.state.isJokeShown && (
-          <JokeText>{this.state.joke}</JokeText>
-        )}
+        <AnimatePresence>
+          {!this.state.isJokeShown ? (
+            <ShowJokeButton
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              exit={{ opacity: 0 }}
+            >
+              Read a joke
+            </ShowJokeButton>
+          ) : (
+            this.state.joke && (
+              <JokeText
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                exit={{ opacity: 0 }}
+              >
+                {this.state.joke}
+              </JokeText>
+            )
+          )}
+        </AnimatePresence>
       </JokeContainer>
     );
   }

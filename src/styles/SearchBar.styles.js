@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-export const SearchBarContainer = styled.div`
+export const SearchBarContainer = styled(motion.div)`
   margin: 5vh auto;
   background: #f4f4f4;
   width: 100%;

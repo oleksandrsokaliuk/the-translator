@@ -15,6 +15,7 @@ import WordHeader from "./components/WordHeader";
 import OriginalView from "./components/OriginalView";
 import WordNotFound from "./components/WordNotFound";
 import AdditionalWord from "./components/AdditionalWord";
+import { AnimatePresence, motion } from "framer-motion";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends React.Component {
 
   async fetchData() {
     try {
+      this.setState({ detailsWord: "" });
       const word = await axios.get(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${this.state.inputWord}`
       );
@@ -83,17 +85,24 @@ class App extends React.Component {
               text="The word is not found"
             />
           )}
-          {this.state.detailsWord && this.state.isWordFound && (
-            <div>
-              <WordHeader detailsWord={this.state.detailsWord} />
-              <Meanings detailsWord={this.state.detailsWord} />
-              <SynAndAnt
-                detailsWord={this.state.detailsWord}
-                additionalWord={this.additionalWord}
-              />
-              <Source inputWord={this.state.inputWord} />
-            </div>
-          )}
+          <AnimatePresence>
+            {this.state.detailsWord && this.state.isWordFound && (
+              <motion.div
+                initial={{ transform: "translateY(1000px)" }}
+                animate={{ transform: "translateY(0)" }}
+                transition={{ ease: "easeOut", duration: 1 }}
+                exit={{ transform: "translateY(5000px)" }}
+              >
+                <WordHeader detailsWord={this.state.detailsWord} />
+                <Meanings detailsWord={this.state.detailsWord} />
+                <SynAndAnt
+                  detailsWord={this.state.detailsWord}
+                  additionalWord={this.additionalWord}
+                />
+                <Source inputWord={this.state.inputWord} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </MainContainer>
       </div>
     );

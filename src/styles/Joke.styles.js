@@ -1,32 +1,22 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const rollDown = keyframes`
-`;
-
-export const JokeContainer = styled.div`
+export const JokeContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: ${(props) =>
-    props.isJokeShown ? "#a442ee" : "rgb(164, 66, 238, 0.5)"};
-  border-bottom: ${(props) =>
-    props.isJokeShown ? "none" : "1rem solid rgb(164, 66, 238)"};
-  margin-top: ${(props) => (props.isJokeShown ? "15px" : "0")};
-  border-radius: ${(props) => (props.isJokeShown ? "1%" : "50%")};
-  width: 70%;
-  min-height: 50px;
+  background-color: rgb(164, 66, 238, 0.5);
+  margin-top: "15px";
+  width: 80%;
+  min-height: 200px;
   padding: 5%;
   cursor: pointer;
   overflow: hidden;
-  &:active {
-    border-bottom: none;
-    min-height: 40px;
-    margin-top: 15px;
-  }
+  border-radius: 40%;
 `;
 
-export const ShowJokeButton = styled.h4`
+export const ShowJokeButton = styled(motion.h4)`
   width: 100%;
   font-size: 40px;
   background-color: transparent;
@@ -37,11 +27,12 @@ export const ShowJokeButton = styled.h4`
   text-align: center;
 `;
 
-export const JokeText = styled.p`
+export const JokeText = styled(motion.p)`
   font-style: italic;
   font-size: 18px;
-  text-align: center;
+  /* text-align: center; */
+  color: white;
   width: 100%;
   white-space: pre-line;
-  text-align: justify;
+  text-align: center;
 `;

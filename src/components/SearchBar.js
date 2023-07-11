@@ -15,7 +15,14 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <SearchBarContainer>
+      <SearchBarContainer
+        initial={{ opacity: 0, backgroundColor: "transparent" }}
+        transition={{ duration: 1, delay: 3 }}
+        animate={{
+          opacity: 1,
+          backgroundColor: "rgba(255,255,255, 0.3)",
+        }}
+      >
         <SearchBarInput
           type="text"
           placeholder="Type a word..."
