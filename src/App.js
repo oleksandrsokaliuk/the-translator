@@ -2,19 +2,13 @@ import React from "react";
 import SearchBar from "./components/SearchBar";
 import axios from "axios";
 import GlobalStyle from "./styles/Global.styles";
-import {
-  Emoji,
-  MainContainer,
-  WordNotFoundHeader,
-  WordNotFoundContainer,
-} from "./styles/App.styles";
+import { MainContainer } from "./styles/App.styles";
 import SynAndAnt from "./components/SynAndAnt";
 import Meanings from "./components/Meanings";
 import Source from "./components/Source";
 import WordHeader from "./components/WordHeader";
 import OriginalView from "./components/OriginalView";
 import WordNotFound from "./components/WordNotFound";
-import AdditionalWord from "./components/AdditionalWord";
 import { AnimatePresence, motion } from "framer-motion";
 
 class App extends React.Component {

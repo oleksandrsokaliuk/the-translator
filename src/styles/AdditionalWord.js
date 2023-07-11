@@ -3,7 +3,7 @@ import { GrClose } from "react-icons/gr";
 import { motion } from "framer-motion";
 
 export const AdditionalWordContainer = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   top: 10%;
   left: 0;
   height: 50vh;
@@ -19,6 +19,16 @@ export const AdditionalWordContainer = styled(motion.div)`
   transition: all 1s ease;
   ::-webkit-scrollbar {
     width: 0;
+  }
+  @media (min-width: 768px) {
+    height: 80vh;
+    min-width: 100%;
+    padding-top: 20%;
+  }
+  @media (max-width: 985px) {
+    height: 80vh;
+    min-width: 100%;
+    padding-top: 20%;
   }
 `;
 

@@ -8,4 +8,5 @@ export const SourceHeader = styled.h3`
 export const SourceLink = styled.a`
   display: inline;
   color: inherit;
+  font-size: 0.8em;
 `;
